@@ -5,7 +5,12 @@
 # docker build -t <repo-user>/elk .
 
 # Run with:
-# docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -p 5000:5000 -it --name elk <repo-user>/elk
+# docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -p 5000:5000  -p 5050:5050-it --name elk <repo-user>/elk
+
+# to use in CF
+# cf cups elk -l syslog://10.0.2.3:5050 # where 10.0.2.3 is the IP of your docker host, reachable from within app containers
+# cf bs <myapp> elk
+# cf restage <myapp>
 
 FROM phusion/baseimage
 MAINTAINER Sebastien Pujadas http://pujadas.net
